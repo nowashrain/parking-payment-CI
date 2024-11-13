@@ -24,6 +24,8 @@ pipeline {
             steps {
                 dir('parking-payment-CI'){
                 sh '''
+                ls -l 
+                ls -l ./arm64-payment-service 
                 docker build --platform linux/arm64 -t ${DOCKER_IMAGE_OWNER}/arm64-payment-service:latest -t ${DOCKER_IMAGE_OWNER}/arm64-payment-service:${DOCKER_BUILD_TAG} ./arm64-payment-service
                 docker tag ${DOCKER_IMAGE_OWNER}/arm64-payment-service:latest ${DOCKER_IMAGE_OWNER}/arm64-payment-service:${DOCKER_BUILD_TAG}
                 '''
