@@ -6,7 +6,7 @@ pipeline {
         DOCKER_BUILD_TAG = "v${env.BUILD_NUMBER}"
         DOCKER_PWD = credentials('dockerhub')
         GIT_CREDENTIALS = credentials('github_token')  
-        REPO_URL = 'gongbu22/project-parking-CD.git'
+        REPO_URL = 'gongbu22/project-parking-CD'
         COMMIT_MESSAGE = 'Update README.md via Jenkins Pipeline'
     }
 
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 sh '''
                 rm -rf project-parking-CD
-                git clone https://github.com/${REPO_URL}
+                git clone https://github.com/${REPO_URL}.git
                 '''
             }
         }
@@ -91,7 +91,7 @@ pipeline {
             steps {
                 dir('project-parking-CD') {
                 sh '''
-                    git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/${REPO_URL} main
+                    git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/${REPO_URL}.git main
                 '''
                 }
             }
