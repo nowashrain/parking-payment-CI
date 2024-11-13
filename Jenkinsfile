@@ -92,9 +92,9 @@ pipeline {
         stage('Push Changes') {
             steps {
                 dir('project-parking-CD') {
-                sh '''
-                    git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/${REPO_URL}.git main
-                '''
+                    sh '''
+                        git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/${REPO_URL}.git main
+                    '''
                 }
             }
         }
