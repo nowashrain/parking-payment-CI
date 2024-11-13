@@ -70,8 +70,15 @@ pipeline {
             steps {
                 sh """
                     cd project-parking-CD
-                    echo "# Updated README" > README.md
-                    echo "This README was updated by Jenkins Build #${env.BUILD_NUMBER} on \$(date)" >> README.md
+                    echo "\nThis README was updated by Jenkins Build #${env.BUILD_NUMBER} on \$(date)" >> README.md
+                """
+            }
+        }
+        stage('Update values.yaml') {
+            steps {
+                sh """
+                    cd project-parking-CD/project-parking
+                    sed -i 's| : .*|PARKING_IMG: ${DOCKER_IMAGE_OWNER}/arm64-payment-service:${DOCKER_BUILD_TAG}|' values.yaml
                 """
             }
         }
@@ -82,7 +89,7 @@ pipeline {
                 sh '''
                     git config user.name "nowashrain"
                     git config user.email "rltkanth@gmail.com"
-                    git add README.md
+                    git add README.md project-parking/values.yaml
                     git commit -m "${COMMIT_MESSAGE}"
                 '''
                 }
