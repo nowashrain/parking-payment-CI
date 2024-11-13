@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_OWNER = 'ashashrain'
         DOCKER_BUILD_TAG = "v${env.BUILD_NUMBER}"
         DOCKER_PWD = credentials('dockerhub')
-        GIT_CREDENTIALS = credentials('github_token')  # 본인 credentials 이름
+        GIT_CREDENTIALS = credentials('github_token')  
         REPO_URL = 'gongbu22/project-parking-CD.git'
         COMMIT_MESSAGE = 'Update README.md via Jenkins Pipeline'
     }
